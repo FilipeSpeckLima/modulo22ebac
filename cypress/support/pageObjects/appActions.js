@@ -14,4 +14,12 @@ Cypress.Commands.add('realizarCheckout', (dados) => {
   cy.get('#billing_phone').type(dados.telefone);
   cy.get('#billing_email').type(dados.email);
   cy.get('#place_order').click();
+
+// Comando customizado para adicionar produto ao carrinho
+Cypress.Commands.add('adicionarProdutoAoCarrinho', (produtoNome) => {
+  cy.get('.product_list').contains(produtoNome).click();
+  cy.get('button.single_add_to_cart_button').click();
+  cy.wait(1000); // Pequena espera para garantir que produto foi adicionado
+});
+
 });
